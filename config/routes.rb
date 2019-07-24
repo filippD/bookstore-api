@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-	post 'api/v1/signup', to: 'devise/registrations#new'
+  mount_devise_token_auth_for 'User', at: 'auth'
 	namespace :api do
 	    namespace :v1 do
 	      resources :books
