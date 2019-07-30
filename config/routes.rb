@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-	post 'api/v1/signup', to: 'devise/registrations#new'
+  	
 	namespace :api do
 	    namespace :v1 do
+	      post 'user_token' => 'user_token#create'
 	      resources :books
 	    end
 	end
