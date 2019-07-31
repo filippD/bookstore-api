@@ -1,10 +1,11 @@
 
 module Api::V1
 	class BooksController < ApplicationController
+		before_action :authenticate_user
 		before_action :set_book, only: [:show, :update, :destroy]
 
 		def index
-			@books = Book.order(:created_at)
+			@books = current_user.books.order(:created_at)
 			render json: @books
 		end
 
@@ -13,7 +14,7 @@ module Api::V1
 	    end
 
 	    def create
-	    	@book = Book.new(book_params)
+	    	@book = current_user.books.build(book_params)
 	    	@book.read = false
 			if @book.save
 				render json: @book, status: :created
