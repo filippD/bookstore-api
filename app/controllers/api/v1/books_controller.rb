@@ -5,7 +5,7 @@ module Api::V1
 		before_action :set_book, only: [:show, :update, :destroy]
 
 		def index
-			@books = current_user.books.order(:created_at)
+			@books = current_user.books
 			render json: @books
 		end
 
